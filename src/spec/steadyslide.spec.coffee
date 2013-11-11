@@ -4,51 +4,23 @@
 # Test methods:
 #   describe "name", ()->
 
-describe "jQuery#steadyslide", ->
+describe "Steady Slide", ->
 
   beforeEach ->
-    fixtures =
+    container =
       """
-      <div id="qunit-fixture">
-        <span>lame test markup</span>
-        <span>normal test markup</span>
-        <span>awesome test markup</span>
-      </div>
+      <ul id="slideshow">
+        <li class="steady-item active">1</li>
+        <li class="steady-item active">2</li>
+        <li class="steady-item">3</li>
+        <li class="steady-item">4</li>
+      </ul>
       """
-    $("body").append(fixtures)
-    @elems = $(fixtures).children()
+    $("body").append(container)
 
   afterEach ->
     $("body").empty()
 
   it "should be chainable", ->
-    expect(@elems.steadyslide()).toEqual @elems
-
-  it "should be awesome", ->
-    expect(@elems.steadyslide().text()).toBe "awesome0awesome1awesome2"
-
-describe "jQuery.steadyslide", ->
-
-  it "should be awesome", ->
-    expect($.steadyslide()).toBe "awesome."
-    expect($.steadyslide(punctuation: "!")).toBe "awesome!"
-
-describe ":steadyslide selector", ->
-
-  beforeEach ->
-    fixtures =
-      """
-      <div id="qunit-fixture">
-        <span>lame test markup</span>
-        <span>normal test markup</span>
-        <span>awesome test markup</span>
-      </div>
-      """
-    $("body").append(fixtures)
-    @elems = $(fixtures).children()
-
-  afterEach ->
-    $("body").empty()
-
-  it "should be awesome", ->
-    expect(@elems.filter(":steadyslide").get()).toEqual @elems.last().get()
+    el = $("#slideshow")
+    expect(el.steadyslide()).toEqual el

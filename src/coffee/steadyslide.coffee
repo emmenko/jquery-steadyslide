@@ -1,33 +1,44 @@
-#
-# steadyslide
-# https://github.com/emmenko/jquery-steadyslide
-#
-# Copyright (c) 2013 Nicola Molinari
-# Licensed under the MIT license.
-#
-
 (($)->
 
-  # Collection method.
-  $.fn.steadyslide = ->
-    return @.each (i)->
-      # Do something awesome to each selected element.
-      $(@).html("awesome#{i}")
+  $.fn.steadyslide = (options = {})->
+    $.extend options,
+      visible_items: 1
+      duration: 200
+      easing: "linear"
+      interval: 3000
 
-  # Static method.
-  $.steadyslide = (options)->
-    # Override default options with passed-in options.
-    options = $.extend({}, $.steadyslide.options, options)
-    # Return something awesome.
-    return "awesome#{options.punctuation}"
+    filterActive = (el)-> el.filter -> $(@).hasClass("active")
+    filterNonActive = (el)-> el.filter -> not $(@).hasClass("active")
+    getItems = (el)-> el.find("steady-item")
 
-  # Static method default options.
-  $.steadyslide.options =
-    punctuation: "."
+    # TODO: check that active elements are defined
 
-  # Custom selector.
-  $.expr[":"].steadyslide = (elem)->
-    # Is this element awesome?
-    return $(elem).text().indexOf("awesome") isnt -1
+    if options.visible_items > 1
+      @.each ->
+        container = @
+        items = getItems container
+
+        nonActiveItems = filterNonActive items
+        nonActiveItems.hide()
+
+        index = 0 # which active element should be changed
+        cycle = ->
+          updatedItems = getItems container
+          # filter non-active items
+          nonActiveItems = filterNonActive updatedItems
+          activeElementToChange = $(updatedItems.get(index))
+          newElementToShow = $(nonActiveItems.get(0)).addClass("active")
+          newElementToShow.insertAfter(activeElementToChange)
+          activeElementToChange.fadeOut options.duration, options.easing, ->
+            # move it to the end of the list
+            activeElementToChange.removeClass("active").appendTo(container)
+            newElementToShow.fadeIn options.duration, options.easing
+          if index is visible_items - 1
+            index = 0
+          else
+            index++
+
+        setInterval cycle, options.interval
+    @
 
 )(jQuery)
