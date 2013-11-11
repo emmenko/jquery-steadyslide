@@ -11,7 +11,6 @@
       options = {};
     }
     $.extend(options, {
-      visible_items: 1,
       duration: 200,
       easing: "linear",
       interval: 3000
@@ -27,15 +26,20 @@
       });
     };
     getItems = function(el) {
-      return el.find("steady-item");
+      return el.find("*[data-toggle=steady-item]");
     };
-    if (options.visible_items > 1) {
-      this.each(function() {
-        var container, cycle, index, items, nonActiveItems;
-        container = this;
-        items = getItems(container);
+    this.each(function() {
+      var activeItems, container, cycle, index, items, nonActiveItems, visible_items;
+      container = $(this);
+      items = getItems(container);
+      activeItems = filterActive(items);
+      visible_items = activeItems.length;
+      if (visible_items > 1) {
         nonActiveItems = filterNonActive(items);
         nonActiveItems.hide();
+        activeItems.each(function() {
+          return $(this).prependTo(container);
+        });
         index = 0;
         cycle = function() {
           var activeElementToChange, newElementToShow, updatedItems;
@@ -55,8 +59,8 @@
           }
         };
         return setInterval(cycle, options.interval);
-      });
-    }
+      }
+    });
     return this;
   };
 })(jQuery);

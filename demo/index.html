@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="utf-8">
+  <title>Steady Slideshow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+  <div id="slideshow">
+    <img src="http://lorempixel.com/400/200/abstract" data-toggle="steady-item" class="active">
+    <img src="http://lorempixel.com/400/200/animals" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/business" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/cats" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/city" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/food" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/night" data-toggle="steady-item" class="active">
+    <img src="http://lorempixel.com/400/200/life" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/fashion" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/people" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/nature" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/sports" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/technics" data-toggle="steady-item">
+    <img src="http://lorempixel.com/400/200/transport" data-toggle="steady-item" class="active">
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="../dist/steadyslide.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    $(function() {
+       $("#slideshow").steadyslide()
+    });
+  </script>
+</body>
+</html>

@@ -10,10 +10,10 @@ describe "Steady Slide", ->
     container =
       """
       <ul id="slideshow">
-        <li class="steady-item active">1</li>
-        <li class="steady-item active">2</li>
-        <li class="steady-item">3</li>
-        <li class="steady-item">4</li>
+        <li data-toggle="steady-item" class="active">1</li>
+        <li data-toggle="steady-item" class="active">2</li>
+        <li data-toggle="steady-item">3</li>
+        <li data-toggle="steady-item">4</li>
       </ul>
       """
     $("body").append(container)
