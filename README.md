@@ -11,11 +11,22 @@ Download the [production version][min] or the [development version][max].
 In your web page:
 
 ```html
+<ul id="slideshow">
+  <li data-toggle="steady-item" class="active">1</li>
+  <li data-toggle="steady-item" class="active">2</li>
+  <li data-toggle="steady-item">3</li>
+  <li data-toggle="steady-item">4</li>
+</ul>
+
 <script src="jquery.js"></script>
 <script src="dist/steadyslide.min.js"></script>
 <script>
-jQuery(function($) {
-  $.awesome(); // "awesome"
+$(document).ready(function(){
+  $("#slideshow").steadyslide({
+    duration: 200,
+    easing: "linear",
+    interval: 3000
+  });
 });
 </script>
 ```
@@ -24,7 +35,7 @@ jQuery(function($) {
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+[Demo](demo/index.html) page.
 
 ## Release History
 _(Nothing yet)_
