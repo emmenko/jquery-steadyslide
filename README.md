@@ -1,3 +1,5 @@
+<h1 align="center">This repository is deprecated and not maintained anymore</h1>
+
 # Steadyslide
 
 Create a steady slideshow where each element indipendently changes
